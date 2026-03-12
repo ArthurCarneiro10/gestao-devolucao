@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GestãoRev — Devoluções & Trocas</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- 🔐 Credenciais do Firebase — NÃO commitado (ver .gitignore) -->
+  <script src="firebase-config.js"></script>
+
+  <script type="module">
+/* ═══════════════════════════════════════════
+   firebase.js — Inicialização + Auth + Firestore
+   Expõe tudo via window._ para os outros módulos.
+═══════════════════════════════════════════ */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+  createUserWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import {
+  getFirestore, collection, addDoc, getDocs,
+  deleteDoc, doc, onSnapshot, query, orderBy, setDoc, getDoc, updateDoc
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = window.FIREBASE_CONFIG;
+
+const app  = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db   = getFirestore(app);
+
+// Firebase Auth
+window._auth                      = auth;
+window._signIn                    = signInWithEmailAndPassword;
+window._signOut                   = signOut;
+window._onAuthStateChanged        = onAuthStateChanged;
+window._createUserWithEmail       = createUserWithEmailAndPassword;
+
+// Firestore
+window._db         = db;
+window._col        = collection;
+window._addDoc     = addDoc;
+window._getDocs    = getDocs;
+window._deleteDoc  = deleteDoc;
+window._doc        = doc;
+window._onSnapshot = onSnapshot;
+window._query      = query;
+window._orderBy    = orderBy;
+window._setDoc     = setDoc;
+window._getDoc      = getDoc;
+window._updateDoc   = updateDoc;
+
+document.dispatchEvent(new Event('firebase-ready'));
+
+  </script>
+
+  <style>
+    /* ══ variables.css ══ */
+/* ═══════════════════════════════════════════
+   VARIÁVEIS GLOBAIS & RESET
+   Para mudar cores, edite apenas este arquivo.
+═══════════════════════════════════════════ */
+:root {
+  --bg:       #0e0e10;
+  --surface:  #18181c;
+  --surface2: #222228;
+  --border:   #2e2e38;
+  --text:     #f0f0f4;
+  --muted:    #8888a0;
+
+  --accent-dev:   #2563a8;
+  --accent-troca: #4ecdc4;
+  --accent-venda: #ffe66d;
+  --admin:        #b57bff;
+  --danger:       #ff4466;
+  --success:      #44ffaa;
+
+  --font-ui:   'DM Mono', monospace;
+  --font-head: 'Syne', sans-serif;
+
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   16px;
+  --radius-xl:   20px;
+  --radius-pill: 999px;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  min-height: 100vh;
