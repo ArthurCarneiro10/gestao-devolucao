@@ -125,7 +125,7 @@ usuarios/
 
 ## 📸 Screenshots
 
-> Em breve — adicione captur<img width="1648" height="891" alt="Captura de Tela 2026-03-12 às 14 13 20" src="https://github.com/user-attachments/assets/950791ce-0368-4c46-8243-6bce51532b1d" />
+> <img width="1648" height="891" alt="Captura de Tela 2026-03-12 às 14 13 20" src="https://github.com/user-attachments/assets/950791ce-0368-4c46-8243-6bce51532b1d" />
 as de tela do sistema aqui.
 
 ---
